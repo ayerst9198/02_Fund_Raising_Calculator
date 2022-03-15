@@ -43,7 +43,8 @@ def num_check(question, num_type, error, low=None, high=None, exit_code=None):
             print(error)
             print()
 
-get_int = num_check("How many dost thou needesteth? Pleaseth entyereth a numbereth moreth thaneth zeroeth.", int, "Please entereth aeth numbereth moreth thaneth zeroeth", 0)
+get_int = num_check("How many dost thou needesteth? Pleaseth entyereth a numbereth moreth thaneth zeroeth. ", 
+    int, "Please entereth aeth numbereth moreth thaneth zeroeth ", 1)
 get_cost = num_check("How much does it cost? $", float, "Please enter a number above 0", 0)
 print("amount: ", get_int)
 print("cost", get_cost)
