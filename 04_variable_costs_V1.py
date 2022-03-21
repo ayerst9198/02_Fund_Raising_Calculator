@@ -79,7 +79,7 @@ variable_dict = {
 }
 
 # Get user data
-product_name = not_blank("Product name: ", "The product name can't be blank")
+product_name = not_blank("Company name: ", "The company name can't be blank")
 
 # loop to get component, quantity and price
 item_name = ""
