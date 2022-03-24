@@ -64,21 +64,6 @@ def not_blank(question, error_msg):
 def currency(x):
     return "${:.2f}".format(x)
 
-def yes_no(question):
-    valid = False
-    while not valid:
-        response = input(question).lower()
-
-        if response == "yes" or response == "y":
-            response = "yes"
-            return response
-
-        elif response == "no" or response == "n":
-            response = "no"
-            return response
-
-        else:
-            print("Please input yes / no")
 
 # gets expenses and returns list with
 # the data frame and subtotal
@@ -134,59 +119,23 @@ def get_expenses(var_fixed):
     
     return [expense_frame, sub_total]
 
-## prints expense frames
-def expense_print(heading, frame, subtotal):
-    print()
-    print("*** {} Costs ***".format(heading))
-    print(frame)
-    print()
-    print("{} Costs: ${:.2f}".format(heading, subtotal))
-    return ""
 
-def konami():
-    print("looks like we got a gamer in the chat")
 # Main routine goes here
-
-
 
 # get product name
 product_name = not_blank("Company name: ", "The company name can't be blank")
+fixed_expenses = get_expenses("fixed")
 
-if product_name == "upupdowndownleftrightleftrightbastart":
-    easter_egg = konami()
-    
-else:
-    # get variable costs
-    print()
-    print("Please enter your variable costs below...")
-    variable_expenses = get_expenses("variable")
-    variable_frame = variable_expenses[0]
-    variable_sub = variable_expenses[1]
+# fixed_expenses = get_expenses("variable")
+fixed_frame = fixed_expenses[0]
+fixed_sub = fixed_expenses[1]
 
-    print()
-    have_fixed = yes_no("Do you have fixed costs (y / n)? ")
-    if have_fixed == "yes":
 
-        #Get fixed costs
-        fixed_expenses = get_expenses("fixed")
-        # fixed_expenses = get_expenses("variable")
-        fixed_frame = fixed_expenses[0]
-        fixed_sub = fixed_expenses[1]
-    else:
-        fixed_sub = 0
+# *** Printing Area *** #
 
-    # ask user for profit goal
+print()
+print(fixed_frame[["Cost"]])
 
-    # calculate recommended price
+print()
 
-    # write data to file
-
-    # *** Printing Area *** #
-
-    print()
-    print("*** Fund Raising - {} ***".format(product_name))
-    print()
-    expense_print("Variable", variable_frame, variable_sub)
-
-    if have_fixed == "yes":
-        expense_print("Fixed", fixed_frame[["Cost"]], fixed_sub)
+print("variable costs: ${:.2f}".format(fixed_sub))
