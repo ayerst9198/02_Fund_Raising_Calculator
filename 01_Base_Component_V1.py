@@ -1,5 +1,6 @@
 import pandas
 import time
+import random
 
 def num_check(question, num_type, error, low=None, high=None, exit_code=None):
 
@@ -146,10 +147,14 @@ def expense_print(heading, frame, subtotal):
 
 def kirbo():
     count = 0
+  
     while 1 == 1:
+        num = random.randint(1,10)
         count += 1
-        print("kirbo #{}".format(count))
-    print("gamer")
+        if num == 1:
+            print("demon #{}".format(count))
+        else:
+            print("kirbo #{}".format(count))
 
 
 def konami():
