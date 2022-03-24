@@ -1,4 +1,5 @@
 import pandas
+import time
 
 def num_check(question, num_type, error, low=None, high=None, exit_code=None):
 
@@ -143,8 +144,63 @@ def expense_print(heading, frame, subtotal):
     print("{} Costs: ${:.2f}".format(heading, subtotal))
     return ""
 
+def kirbo():
+    count = 0
+    while 1 == 1:
+        count += 1
+        print("kirbo #{}".format(count))
+    print("gamer")
+
+
 def konami():
-    print("looks like we got a gamer in the chat")
+
+    print()
+    time.sleep(1.5)
+    print("***** In honor of the late T.V. *****")
+    print()
+    time.sleep(1.5)
+    print("1. The Godfather")
+    print()
+    time.sleep(1.5)
+    print("2. Goodfellas")
+    print()
+    time.sleep(1.5)
+    print("3. The Wolf Of Wall Street")
+    print()
+    time.sleep(1.5)
+    print("4. The Irishman")
+    print()
+    time.sleep(1.5)
+    print("5. The Social Network")
+    time.sleep(1.5)
+    print("(tHE bIG zUCC)")
+    time.sleep(1.5)
+    print("Like did you even see that picture of him with the sunscreen?")
+    time.sleep(1.5)
+    print("Bro isn't even human at this point")
+    time.sleep(1.5)
+    print("*cough cough*")
+    time.sleep(1.5)
+    print("anyway, back to the list")
+    print()
+    time.sleep(1.5)
+    print("6. Scarface")
+    print()
+    time.sleep(1.5)
+    print("7. Catch me if you Can")
+    print()
+    time.sleep(1.5)
+    print("8. The Dark Knight")
+    print()
+    time.sleep(1.5)
+    print("9. Into the Spider Verse")
+    print()
+    time.sleep(1.5)
+    print("10. Baby Driver")
+    print()
+    time.sleep(10)
+    print("(gamer)")
+    print()
 # Main routine goes here
 
 
@@ -154,6 +210,9 @@ product_name = not_blank("Company name: ", "The company name can't be blank")
 
 if product_name == "upupdowndownleftrightleftrightbastart":
     easter_egg = konami()
+
+elif product_name == "kirbo":
+    kirbo()
     
 else:
     # get variable costs
