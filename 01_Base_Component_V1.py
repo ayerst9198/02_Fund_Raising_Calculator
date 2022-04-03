@@ -257,6 +257,12 @@ def kirbo():
     row(colors,numbers)
     time.sleep(10)
 
+# miner
+def meghty_minner():
+    while 1 == 1:
+        print("Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig")
+
+
 # upupdowndownleftrightleftrightbastart
 def konami():
 
@@ -315,11 +321,13 @@ def konami():
 product_name = not_blank("Company name: ", "The company name can't be blank")
 
 if product_name == "upupdowndownleftrightleftrightbastart":
-    easter_egg = konami()
+    konami()
 
 elif product_name == "kirbo":
     kirbo()
-    
+
+elif product_name == "minner":
+    meghty_minner() 
 else:
     # get variable costs
     print()
