@@ -1,4 +1,5 @@
 import pandas
+import math
 import time
 from turtle import Turtle
 
@@ -145,7 +146,7 @@ def profit_goal(total_costs):
     while not valid:
 
         # ask for profit goal...
-        response = input("What is your profit goal (eg $500 or 50%")
+        response = input("What is your profit goal (eg $500 or 50%) ")
 
         # if contains both % and $, error and loop
         if response[0] == "$" and response[-1] == "%":
@@ -201,6 +202,10 @@ def profit_goal(total_costs):
             goal = (amount / 100) * total_costs
             return goal
 
+
+# rounding function
+def round_up(amount, round_to):
+    return int(math.ceil(amount / round_to) * round_to)
 
 #prints expense frames
 def expense_print(heading, frame, subtotal):
@@ -326,8 +331,7 @@ def kirbo():
 # miner
 def meghty_minner():
     while 1 == 1:
-        print("Dig, Dig, Dig, Dig, Dig, Drill, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig, Dig")
-
+        print("Dig, Dig, Dug, Dig, Dig, Dig, Drill")
 
 # upupdowndownleftrightleftrightbastart
 def konami():
@@ -396,6 +400,9 @@ elif product_name == "minner":
     meghty_minner() 
 
 else:
+
+    how_many = num_check("How many items will you be producing? ", int, "The number of items must be a whole number larger than 0", 1)
+
     # get variable costs
     print()
     print("Please enter your variable costs below...")
@@ -420,7 +427,13 @@ else:
     profit_target = profit_goal(all_costs)
 
     # calculate recommended price
-    selling_price = 0
+    sales_needed = all_costs + profit_target
+
+    round_to = num_check("Round to nearest...? $", int, "Can't be 0 or decimal", 0.01)
+    selling_price = sales_needed / how_many
+    print("Selling Price (unrounded): ${:.2f}".format(selling_price))
+
+    recommended_price = round_up(selling_price, round_to)
 
     # write data to file
 
@@ -437,6 +450,14 @@ else:
     print()
     print("***** Total Costs: ${:.2f} *****".format(profit_target))
     print("Total Sales: {:.2f}".format(all_costs, profit_target))
+    print()
 
     print()
-    print("***** Recommended Selling Prices: ${:.2f} *****".format(selling_price))
+    print("**** Profit & Sales Targets ****")
+    print("Profit Target: ${:.2f}".format(profit_target))
+    print("Total Sales: ${:.2f}".format(all_costs + profit_target))
+
+    print()
+    print("****** Pricing ******")
+    print("Minimum Price: ${:.2f}".format(selling_price))
+    print("Recommended  Prices: ${:.2f}".format(recommended_price))
