@@ -421,6 +421,7 @@ else:
         fixed_sub = fixed_expenses[1]
     else:
         fixed_sub = 0
+        
 
     # ask user for profit goal
     all_costs  = variable_sub + fixed_sub
@@ -435,7 +436,24 @@ else:
 
     recommended_price = round_up(selling_price, round_to)
 
+    # change dataframe to string (so it can be written as a txt file)
+    variable_txt = pandas.DataFrame.to_string(variable_frame)
+    fixed_txt = pandas.DataFrame.to_string(fixed_frame)
+
+    to_write  = [product_name, variable_txt, fixed_txt,
+                profit_target, sales_needed,
+                recommended_price]
     # write data to file
+    file_name = "{}.txt".format(product_name)
+    text_file = open(file_name, "w+")
+
+    # heading
+    for item in to_write:
+        text_file.write(item)
+        text_file.write("\n\n")
+    
+    # close file
+    text_file.close()
 
     # *** Printing Area *** #
 
