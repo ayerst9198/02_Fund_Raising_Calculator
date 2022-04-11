@@ -384,9 +384,65 @@ def konami():
     time.sleep(10)
     print("(gamer)")
     print()
+
+
+def string_checker(choice, options):
+    for var_list in options:
+
+        # if snack is in list return full snack name
+        if choice in var_list:
+
+            # get full name of snack and put it 
+            # in title case so it looks noice
+            chosen = var_list[0].title()
+            is_valid = "yes"
+            break
+        # if choe option is not valid, set is_valid to no
+        else:
+            is_valid = "no"
+    
+    # if snack is not ok - ask again
+    if is_valid == "yes":
+        return chosen
+    else: 
+        return "invalid choice"
+
+# function for instructions
+def instructions():
+    print()
+    print("***INSTRUCTIONS***")
+    print()
+    print()
+    print("Enter your companies name, followed by the number of items you will be producing.")
+    print()
+    print("You may then enter the details of one of your variables.")
+    print("These details include: name, quantity, and price.")
+    print()
+    print("This may be repeated untill all variables are entered.")
+    print()
+    print("Once all variables are entered, type xxx in when asked for an item name to continue.")
+    print()
+    print("You will then be asked f you have fixed costs, to which you must enter yes or no.")
+    print("If you have fixed costs, enter them in a similar way to the variable costs, using xxx to exit.")
+    print()
+    print("You will then be asked to enter your profit goal in the form of $ or %.")
+    print("(if neither are entered, you will be asked to clarify)")
+    print()
+    print("You may enter what you want the cost to be rounded to in the form of $.")
+    print()
+    print("After this the data will be printed out, with a txt file being exported")
+    print("(titled the same as the company name).")
+    return ""
+
 # Main routine goes here
 
-
+print("**** WELCOME TO THE FUND RAISING CALCULATOR ****")
+print()
+ask_instructions = yes_no("Would you like to read the instructions? ")
+print()
+if ask_instructions == "yes":
+    instructions()
+    print()
 
 # get product name
 product_name = not_blank("Company name: ", "The company name can't be blank")
@@ -436,12 +492,8 @@ else:
     print("Selling Price (unrounded): ${:.2f}".format(selling_price))
 
     recommended_price = round_up(selling_price, round_to)
-    recommended_price = "{:.2f}".format(recommended_price)
+   
 
-    # change dataframe to string (so it can be written as a txt file)
-    variable_txt = pandas.DataFrame.to_string(variable_frame)
-    sales_needed = "{:.2f}".format(sales_needed)
-    profit_target = "{:.2f}".format(profit_target)
 
     if have_fixed == "yes":
         fixed_txt = pandas.DataFrame.to_string(fixed_frame)
@@ -449,33 +501,6 @@ else:
     else: 
         fixed_txt = ""
 
-    print("Data types")        
-    
-    print("product name", type(product_name))
-    print("variable txt", type(variable_txt))
-    print("vfixed_txt", type(fixed_txt))
-    print("profit_target", type(profit_target))
-    print("sales_needed", type(sales_needed))
-    print("recommended_price", type(recommended_price))
-
-
-    to_write  = [product_name, variable_txt, fixed_txt,
-                profit_target, sales_needed,
-                recommended_price]
-
-
-
-    # write data to file
-    file_name = "{}.txt".format(product_name)
-    text_file = open(file_name, "w+")
-
-    # heading
-    for item in to_write:
-        text_file.write(item)
-        text_file.write("\n\n")
-    
-    # close file
-    text_file.close()
 
     # *** Printing Area *** #
 
@@ -500,4 +525,29 @@ else:
     print()
     print("****** Pricing ******")
     print("Minimum Price: ${:.2f}".format(selling_price))
-    print("Recommended  Prices: ${:.2f}".format(recommended_price))
+    print("Recommended  Prices: ${:.2f}".format(recommended_price))    
+
+
+    # change dataframe to string (so it can be written as a txt file)
+    recommended_price = "Recommended Retail Price: ${:.2f}".format(recommended_price)
+    variable_txt = pandas.DataFrame.to_string(variable_frame)
+    sales_needed = "You need to make at least: ${:.2f}".format(sales_needed)
+    profit_target = "Profit Target: ${:.2f}".format(profit_target)
+
+    to_write  = [product_name, variable_txt, fixed_txt,
+                profit_target, sales_needed,
+                recommended_price]
+
+
+    # write data to file
+    file_name = "{}.txt".format(product_name)
+    text_file = open(file_name, "w+")
+
+    # heading
+    for item in to_write:
+        text_file.write(item)
+        text_file.write("\n\n")
+    
+    # close file
+    text_file.close()
+
